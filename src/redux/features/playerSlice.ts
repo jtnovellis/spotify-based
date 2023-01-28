@@ -1,33 +1,59 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
 import type { RootState } from '../store'
+import { Item } from '../../types'
 
 interface PlayerState {
-  value: number
+  currentSongs: []
+  currentIndex: number
+  isActive: boolean
+  isPlaying: boolean
+  activeSong: Item
+  genreListId: string
 }
 
-const initialState: PlayerState = {
-  value: 0,
+type ActiveSong = {
+  song: Item
+  i: number
+}
+
+const initialState = {
+  currentSongs: [],
+  currentIndex: 0,
+  isActive: false,
+  isPlaying: false,
+  activeSong: {},
+  genreListId: '',
 }
 
 export const playerSlice = createSlice({
   name: 'player',
   initialState,
   reducers: {
-    increment: (state) => {
-      state.value += 1
+    setActiveSong: (state, action: PayloadAction<ActiveSong>) => {
+      state.activeSong = action.payload.song
+      state.currentIndex = action.payload.i
+      state.isActive = true
     },
-    decrement: (state) => {
-      state.value -= 1
-    },
-    incrementByAmount: (state, action: PayloadAction<number>) => {
-      state.value += action.payload
-    },
+
+    nextSong: (state, action) => {},
+
+    prevSong: (state, action) => {},
+
+    playPause: (state, action) => {},
+
+    selectGenreListId: (state, action) => {},
   },
 })
 
-export const { increment, decrement, incrementByAmount } = playerSlice.actions
+export const {
+  nextSong,
+  prevSong,
+  playPause,
+  selectGenreListId,
+  setActiveSong,
+} = playerSlice.actions
 
-export const selectCount = (state: RootState) => state.player.value
+export const selectPlayer = (state: RootState) => state.player
 
 export default playerSlice.reducer

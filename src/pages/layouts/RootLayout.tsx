@@ -1,6 +1,7 @@
 import { Link, Outlet } from 'react-router-dom'
 import { SiSpotify } from 'react-icons/si'
 import { MdHomeFilled, MdSearch, MdLibraryMusic } from 'react-icons/md'
+import MusicPlayer from '../../components/MusicPlayer'
 
 function RootLayout() {
   return (
@@ -42,6 +43,7 @@ function RootLayout() {
         </div>
         <Outlet />
       </div>
+      <MusicPlayer />
     </div>
   )
 }

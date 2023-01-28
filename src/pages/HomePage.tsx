@@ -11,12 +11,12 @@ function HomePage() {
   if (isLoading) return <Loading />
   if (error) return <Error />
 
-  const songs = data.chart_items.map((song: Chartitem) => (
-    <SongCard song={song.item} />
+  const songs = data.chart_items.map((song: Chartitem, i: number) => (
+    <SongCard key={song.item.id} song={song.item} i={i} />
   ))
 
   return (
-    <section className='overflow-y-auto ml-[300px] mt-20'>
+    <section className='overflow-y-auto ml-[300px] mt-20 mb-24'>
       <div>
         <h2 className='text-white text-4xl font-bold ml-16'>Discover</h2>
       </div>

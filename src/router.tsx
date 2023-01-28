@@ -1,15 +1,21 @@
 import { createBrowserRouter } from 'react-router-dom'
+import MainWrapper from './components/MainWrapper'
 import ArtistPage from './pages/ArtistPage'
 import HomePage from './pages/HomePage'
 import RootLayout from './pages/layouts/RootLayout'
 
 export const router = createBrowserRouter([
   {
-    path: '/',
-    element: <RootLayout />,
+    element: <MainWrapper />,
     children: [
-      { index: true, element: <HomePage /> },
-      { path: '/artist', element: <ArtistPage /> },
+      {
+        path: '/',
+        element: <RootLayout />,
+        children: [
+          { index: true, element: <HomePage /> },
+          { path: '/artist', element: <ArtistPage /> },
+        ],
+      },
     ],
   },
 ])
